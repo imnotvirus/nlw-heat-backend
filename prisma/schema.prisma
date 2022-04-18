@@ -1,6 +1,5 @@
 datasource db {
   provider = "sqlite"
-<<<<<<< HEAD
   url      = "file:./dev.db"
 }
 
@@ -17,9 +16,6 @@ model User {
 
   Messages Message[]
   @@map("users")
-=======
-  url      = "file: ./dev.db"
->>>>>>> parent of 0cd5bad (authentication user)
 }
 
 model Message {
