@@ -58,7 +58,14 @@ class AuthenticateNewUserService {
       process.env.JWT_SECRET,
       { subject: user.id, expiresIn: "1d" }
     );
-    return { token, user };
+    return {
+      token,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      },
+    };
   }
 }
 

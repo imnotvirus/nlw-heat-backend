@@ -6,7 +6,7 @@ class ProfileUserService {
       where: { id: user_id },
     });
     if (user) {
-      return user;
+      return { id: user.id, name: user.name, picture: user.avatar_url };
     } else {
       const newUser = await prismaClient.newUser.findFirst({
         where: { id: user_id },

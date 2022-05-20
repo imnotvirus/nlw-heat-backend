@@ -11,13 +11,13 @@ interface IUserResponse {
   name: string;
 }
 interface User {
-    id: string;
-    name: string;
-    email: string;
-    password: string;
+  id: string;
+  name: string;
+  email: string;
+  password: string;
 }
 class CreateUserService {
-  async execute(email:string, password:string, name:string) {
+  async execute(email: string, password: string, name: string) {
     // const url = "https://github.com/login/oauth/access_token";
 
     // const { data: accessTokenResponse } = await axios.post<IAcessTokenResponse>(
@@ -46,7 +46,7 @@ class CreateUserService {
 
     // const { login, id, avatar_url, name } = response.data;
 
-    let user = await prismaClient.newUser.findFirst({where: {email}});
+    let user = await prismaClient.newUser.findFirst({ where: { email } });
 
     if (!user) {
       const salt = await bcrypt.genSalt(10);
@@ -60,7 +60,13 @@ class CreateUserService {
       });
     }
 
-    return { user };
+    return {
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      },
+    };
   }
 }
 
